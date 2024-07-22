@@ -1,4 +1,5 @@
-<template>
+<template >
+
     <header>
       <nav>
         <div class="links-column">
@@ -9,7 +10,7 @@
   
       <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="299" height="130" />
   
-      <img alt="Vue logo" class="grecia" src="@/assets/greciaFondo.png" width="1143" height="600" />
+      <img  alt="Vue logo" class="grecia js-scroll" src="@/assets/greciaFondo.png" width="1143" height="600" />
   
     </header>
   
@@ -18,12 +19,11 @@
     </main>
   
     <section>
+
       <div class="sectionUno">
-  
         <h3 style="margin-right: 437px;">CREATIVE CONCEPT</h3>
         <h3 style="margin-right: 438px;">2024</h3>
         <h3>IAN MILTON WILLIAMS</h3>
-      
       </div>
   
       <div>
@@ -81,12 +81,64 @@
 <script setup>
   import TableComponent from '../components/Tabla.vue';
   import FooterComponent from '../components/Footer.vue';
+  import { onMounted, onUnmounted } from 'vue';
+
+  onMounted(() => {
+    const scrollElements = document.querySelectorAll('.js-scroll');
+
+    const displayScrollElement = (element) => {
+      element.classList.remove('scrolled');
+    };
+
+    const hideScrollElement = (element) => {
+      element.classList.add('scrolled');
+    };
+
+    const handleScrollAnimation = () => {
+      scrollElements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+
+        // Element is in viewport
+        if (elementTop <= window.innerHeight && elementBottom >= 0) {
+          displayScrollElement(element);
+        } else {
+          hideScrollElement(element);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScrollAnimation);
+
+    // Trigger the animation on load
+    handleScrollAnimation();
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', handleScrollAnimation);
+    });
+  });
 </script>
 
+  
+  
+  
+
 <style scoped>
+
+  .js-scroll {
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  }
+
+  .js-scroll.scrolled {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+
+
   
   header {
-    transform: translate(0%, 0%); /* Centrar horizontalmente y verticalmente */
+    transform: translate(0%, 0%);
   }
   
   .navA{
@@ -152,8 +204,9 @@
     text-align: center;
   }
   
-  .primerSub{
+  .primerSub {
     font-size: 24px;
+    transform: translate(0%, -50%); 
   }
   
   .subSectionUno{
@@ -181,19 +234,19 @@
   
   .sectionTres{
     text-align: center;
-  transform: translate(0%, 220%); 
+    transform: translate(0%, 240%); 
   }
   
   .tituloSectionTres{
-    transform: translate(0%, -110%); 
+    transform: translate(0%, -250%); 
   }
     
   .tabla{
-    transform: translate(2%, -3%); 
+    transform: translate(2%, -15%); 
   }
   
   .footer{
-    transform: translate(0%, 380%); 
+    transform: translate(0%, 220%); 
   }
   
   @media (min-width: 1024px) {

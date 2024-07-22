@@ -1,17 +1,15 @@
 <template>
-      <header class="header">
-            <nav>
-            <div class="links-column">
-            <router-link class="navA" to="/">Home</router-link>
-            <router-link class="navA" to="/InterpretacionDelArte">Interpretacion Del Arte</router-link>  
-            </div>
-            </nav>
-            <h2 class="titulo">Diario Para Mi Vos</h2>
-      </header>
+    <header class="header">
+      <nav>
+        <div class="links-column">
+          <router-link class="navA" to="/">Home</router-link>
+          <router-link class="navA" to="/InterpretacionDelArte">Interpretacion Del Arte</router-link>  
+          </div>
+          </nav>
+          <h2 class="titulo">Diario Para Mi Vos</h2>
+    </header>
     <div class="containerLibro" >
-      <div class="libro">
-
-      </div>
+      <div class="libro"/>git 
     </div>
 </template>
 
